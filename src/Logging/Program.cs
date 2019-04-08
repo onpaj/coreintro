@@ -38,7 +38,7 @@ namespace Logging
                     //c.AddLog4Net();
 
                     // Microsoft.Extensions.Logging.ApplicationInsights
-                    //c.AddApplicationInsights("InstrumentationKey");
+                    c.AddApplicationInsights("InstrumentationKey");
                 })
                 .UseStartup<Startup>();
     }

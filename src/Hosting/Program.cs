@@ -27,23 +27,17 @@ namespace Hosting
             // https://github.com/aspnet/AspNetCore/blob/4e44025a52e4b73aa17e09a8041b0e166e0c5ce0/src/DefaultBuilder/src/WebHost.cs
             return WebHost
                 .CreateDefaultBuilder(args)
-                
-                //.ConfigureLogging(conf =>
-                //{
-                //    conf
-                //        .AddConsole()
-                //        .AddDebug()
-                //        .AddEventSourceLogger();
-                //})
-                
-                //.ConfigureAppConfiguration(conf => 
-                //{
-                //    conf
-                //        .AddJsonFile("MyConfigFile.json", true)
-                //        .AddXmlFile("MyAnotherConfigFile.xml", optional: true);
-                //})
-
                 .UseStartup<Startup>();
+
+           return new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot("")
+                .UseIIS()
+                .UseIISIntegration()
+                .ConfigureAppConfiguration(c => { })
+                .ConfigureLogging(l => { })
+                .UseStartup<Startup>()
+                .UseUrls("http://+:5000");
         }
     }
 }

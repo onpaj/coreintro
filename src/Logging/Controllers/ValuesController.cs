@@ -11,10 +11,21 @@ namespace Logging.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ILogger<ValuesController> _injectedLogger;
+        private readonly ILogger _loggerFromFactory;
+
+        public ValuesController(ILoggerFactory loggerFactory, ILogger<ValuesController> injectedLogger)
+        {
+            _injectedLogger = injectedLogger;
+            _loggerFromFactory = loggerFactory.CreateLogger("LoggerFromFactory");
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _loggerFromFactory.LogInformation("New GET from {MachineName}", Environment.MachineName);
+            _injectedLogger.LogInformation("New GET from {MachineName}", Environment.MachineName);
             return new string[] { "value1", "value2" };
         }
 

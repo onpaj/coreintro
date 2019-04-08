@@ -44,6 +44,9 @@ namespace Middlewares
 
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            // Ori.Common.Exceptions
+            app.UseExceptionHandlingMiddleware();
         }
     }
 }
