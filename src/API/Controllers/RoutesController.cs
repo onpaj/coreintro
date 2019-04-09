@@ -11,30 +11,37 @@ namespace API.Controllers
     [ApiController]
     public class RoutesController : ControllerBase
     {
-        // https://localhost:5001/api/routes/byid/65
+        // Single parameter in route
         [HttpGet("byid/{id}")]
         public ActionResult<string> Get(int id)
         {
             return id.ToString();
         }
 
-        // https://localhost:5001/api/routes/bymultiple/65/93
-        // https://localhost:5001/api/routes/bymultiple/65
+        // Multiple parameters in route, optional
+        // ASP allows you to have route param as optional, but you should not use it in REST api
         [HttpGet("bymultiple/{id}/{id2?}")]
         public ActionResult<string> GetMultiple(int id, int? id2)
         {
             return $"{id} + {id2?.ToString() ?? "NULL"}";
         }
 
-        // https://localhost:5001/api/routes/byhq?queryValue=MyQueryValue
+
+        // Parameter in header and query string
         [HttpGet("byhq")]
         public ActionResult<string> GetFromHeader([FromHeader]string headerValue, [FromQuery]string queryValue)
         {
             return $"Header: {headerValue} | Query: {queryValue}";
         }
 
+        // Parameter in body
+        [HttpPut]
+        public ActionResult Put([FromBody]InputDto data)
+        {
+            return Ok();
+        }
 
-
+        // Unknow result type
         [HttpGet("modelunknown")]
         public ActionResult GetModelUnknown()
         {
@@ -42,12 +49,15 @@ namespace API.Controllers
         }
 
 
+        // Direct type return
         [HttpGet("modelProvidedByReturnValue")]
         public InputDto GetModelProvided()
         {
             return new InputDto();
         }
 
+
+        // Return type specified by attribute
         [HttpGet("modelProvidedByResponseType")]
         [ProducesResponseType(typeof(InputDto), (int)HttpStatusCode.OK)]
         public ActionResult GetModelProvidedByResponseType()
