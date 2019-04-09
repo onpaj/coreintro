@@ -30,6 +30,8 @@ namespace DI
             /* *******  REGISTER TYPES *********/
             // By type
             services.AddSingleton<IService, ServiceImplementation1>();
+            services.AddTransient<IService, ServiceImplementation1>();
+            services.AddScoped<IService, ServiceImplementation1>();
 
             // Direct instance
             services.AddSingleton(new ServiceImplementation1()); // 
@@ -50,7 +52,6 @@ namespace DI
 
             /* *******  SCRUTOR  *********/
             // https://github.com/khellang/Scrutor
-
             services.Scan(scan =>
             {
                 scan

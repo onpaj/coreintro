@@ -32,6 +32,10 @@ namespace Settings
                     
                     if (context.HostingEnvironment.IsDevelopment())
                     {
+                        // dotnet user-secrets set "SettingsClass:SecretPhrase" "bubak"--project D:\Work\Oriflame\ArchSync\coreintro\src\Settings
+                        // dotnet user-secrets remove "SettingsClass:SecretPhrase" --project D:\Work\Oriflame\ArchSync\coreintro\src\Settings
+
+
                         // Microsoft.Extensions.Configuration.UserSecrets
                         c.AddUserSecrets<Startup>();
 
