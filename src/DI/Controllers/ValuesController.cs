@@ -10,11 +10,11 @@ namespace DI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly IService _service;
 
-        public ValuesController(IServiceProvider serviceProvider)
+        public ValuesController(IService service)
         {
-            _serviceProvider = serviceProvider;
+            _service = service;
         }
 
         // GET api/values

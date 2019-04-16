@@ -9,8 +9,8 @@ namespace Tooling
         {
             Console.WriteLine("Hello World!");
 
-            //var version = typeof(Program).Assembly.GetName().Version;
-            //Console.WriteLine(version);
+            var version = typeof(Program).Assembly.GetName().Version;
+            Console.WriteLine(version);
         }
     }
 }
